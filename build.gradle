@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'groovy'
+
+group = 'org.mini2Dx'
+version = '0.1.0-SNAPSHOT'
+
+ext {
+	groovyVersion="2.3.6"
+	
+	junitVersion="4.8.1"
+	jmockVersion="2.5.1"
+}  
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+	
+	testCompile "junit:junit:$junitVersion"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+tasks.eclipse.doLast {
+	delete ".project"
+}
